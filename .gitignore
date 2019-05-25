@@ -3,3 +3,4 @@ MyBlog/settings.py
 *.pyc
 .idea/
 static/
+config/
