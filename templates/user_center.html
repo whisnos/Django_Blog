@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    个人中心页面
+{% endblock %}
+{% block bigcontain %}
+    <section class="container container-page">
+        <div class="pageside">
+            <div class="pagemenus">
+                <ul class="pagemenu">
+                    <li><a href="http://www.muzhuangnet.com/tags/" title="标签云" draggable="false">标签云</a></li>
+                    <li><a href="http://www.muzhuangnet.com/bookmark/" rel="nofollow" title="书签"
+                           draggable="false">书签</a></li>
+                    <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow" title="读者墙"
+                           draggable="false">读者墙</a></li>
+
+                    <li><a title="MZBlog开源博客" href="http://www.muzhuangnet.com/list/mznetblog/" draggable="false">MZBlog开源博客</a>
+                    </li>
+
+                    <li><a title="IT技术笔记" href="http://www.muzhuangnet.com/list/code/" draggable="false">IT技术笔记</a></li>
+
+                    <li><a title="资讯分享" href="http://www.muzhuangnet.com/list/news/" draggable="false">资讯分享</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <header class="article-header">
+                <h1 class="article-title">标签云</h1>
+            </header>
+            <ul class="plinks ptags">
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.ias.js' %}"></script>
+{#<script src="{% static 'js/scripts.js' %}"></script>#}
+{% endblock %}

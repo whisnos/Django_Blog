@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}{{ art_obj.title }}_Debug5{% endblock %}
+{% block content %}
+    <div class="content">
+        <header class="article-header">
+            <h1 class="article-title"><a href="#" title="{{ art_obj.title }}">{{ art_obj.title }}</a></h1>
+            <div class="article-meta"> <span class="item article-meta-time">
+	  <time class="time" data-toggle="tooltip" data-placement="bottom" title=""
+            data-original-title="发表时间：{{ art_obj.add_time }}"><i
+              class="glyphicon glyphicon-time"></i> {{ art_obj.add_time }}</time>
+	  </span>
+                <span
+                    class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
+                    data-original-title="{{ art_obj.category.name }}"><i class="glyphicon glyphicon-list"></i> <a
+                    href="{% url 'list' art_obj.category.path_name %}"
+                    title="{{ art_obj.category.name }}">{{ art_obj.category.name }}</a></span>
+                <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
+                      data-original-title="浏览量"><i
+                        class="glyphicon glyphicon-eye-open"></i> {{ art_obj.click_num }}</span> <span
+                        class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title=""
+                        data-original-title="评论量"><i
+                        class="glyphicon glyphicon-comment"></i> {{ art_obj.cont_num }}</span></div>
+        </header>
+        <article class="article-content">
+            <p><img data-original="images/201610181557196870.jpg" src="/static/images/201610181557196870.jpg" alt=""/>
+            </p>
+            <p>
+                {{ art_obj.content|safe }}
+            <pre class="prettyprint lang-cs"></pre>
+            <script>                  window._bd_share_config = {
+                "common": {
+                    "bdSnsKey": {},
+                    "bdText": "",
+                    "bdMini": "2",
+                    "bdMiniList": false,
+                    "bdPic": "",
+                    "bdStyle": "1",
+                    "bdSize": "32"
+                }, "share": {}
+            };
+            with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=0.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+        </article>
+        <div id="postcomments" class="addcomment">
+            <ol id="comment_list" class="commentlist">
+                {% for com in user_comment_list %}
+                    <li class="comment-content"><span class="comment-f">#{{ forloop.counter }}楼</span>
+                        <div class="comment-main"><p><a class="address" href="#" rel="nofollow"
+                                                        target="_blank">{{ com.comment_man.nick_name }}</a><span
+                                class="time">({{ com.add_time }})</span><br>{{ com.content }}</p></div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="title" id="comment">
+            <h3>评论</h3>
+        </div>
+        <div id="respond">
+            <div class="comment">
+                <div class="comment-box">
+                        <textarea placeholder="您的评论或留言（必填）" name="comment_textarea" id="comment-textarea" cols="100%"
+                                  rows="3" tabindex="3"></textarea>
+                    <div class="comment-ctrl">
+                        <div class="comment-prompt" style="display: none;"><i
+                                class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text">评论正在提交中...请稍后</span>
+                        </div>
+                        <div class="comment-success" style="display: none;"><i class="fa fa-check"></i> <span
+                                class="comment-prompt-text">评论提交成功...</span></div>
+                        <button type="submit" name="comment-submit" id="comment-submit" tabindex="4">评论</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block TongJi %}
+{% endblock %}
+{% block js %}
+    <script>
+        $(function replyBox(box) {
+            $('#comment-submit').click(function () {
+                var nick_name = $('#nick_name').val();
+                var content = $('#comment-textarea').val();
+                var div = document.createElement('div');
+                div.className = 'addcomment';
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'user_comment' art_obj.id %}',
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        nick_name: nick_name,
+                        content: content,
+                    },
+                    success: function (cb) {
+                        if (cb.status == 'ok') {
+                            window.location.reload();
+                        } else {
+                            alert(cb.msg)
+                        }
+                    }
+
+                })
+            })
+
+        })
+    </script>
+{% endblock %}

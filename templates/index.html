@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}python,python爬虫教程,python深度学习,机器学习,python数据挖掘分析_Debug5_官方网站{% endblock %}
+{% block content %}
+    <div class="content">
+        <div id="focusslide" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#focusslide" data-slide-to="0" class="active"></li>
+                <li data-target="#focusslide" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <a href="#" target="_blank" title="">
+                        <img src="/static/images//201610181557196870.jpg" alt="" class="img-responsive"></a>
+                </div>
+                <div class="item">
+                    <a href="#" target="_blank" title="专业网站建设">
+                        <img src="/static/images//201610241227558789.jpg" alt="专业网站建设"
+                             class="img-responsive"></a>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
+                    class="sr-only">上一个</span> </a> <a class="right carousel-control" href="#focusslide"
+                                                       role="button" data-slide="next" rel="nofollow"> <span
+                class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span
+                class="sr-only">下一个</span> </a></div>
+        {% for art in recommend_article %}
+            <article class="excerpt-minic excerpt-minic-index">
+                <h2><span class="red">【推荐】</span><a target="_blank" href="{% url 'detail' art.id %}"
+                                                    title="用DTcms做一个独立博客网站（响应式模板）">{{ art.title }}</a>
+                </h2>
+                <p class="note">{{ art.desc }}</p>
+            </article>
+        {% endfor %}
+        <div class="title">
+            <h3>最新发布</h3>
+            <div class="more">
+                {% for cate in new_category %}
+                <a href="#" title="{{ cate.name }}">{{ cate.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% for art in all_articles %}
+            <article class="excerpt excerpt-1" style="">
+                <a class="focus" href="{% url 'detail' art.id %}" title="{{ art.title }}" target="_blank"><img class="thumb"
+                                                                                              data-original="{{ MEDIA_URL }}{{ art.image }}"
+                                                                                              src="{{ MEDIA_URL }}{{ art.image }}"
+                                                                                              alt="{{ art.title }}"
+                                                                                              style="display: inline;"></a>
+                <header><a class="cat" href="{% url 'list' art.category.path_name %}" title="{{ art.category.name }}" target="_blank">{{ art.category.name }}<i></i></a>
+                    <h2><a href="{% url 'detail' art.id %}" title="{{ art.title }}" target="_blank">{{ art.title }}</a>
+                    </h2>
+                </header>
+                <p class="meta">
+                    <time class="time"><i class="glyphicon glyphicon-time"></i> {{ art.add_time }}</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{ art.click_num }}</span> <a class="comment"
+                                                                                                   href="##comment"
+                                                                                                   title="评论"
+                                                                                                   target="_blank"><i
+                        class="glyphicon glyphicon-comment"></i> {{ art.cont_num }}</a>
+                </p>
+               <p class="note">{{ art.desc }}</p>
+            </article>
+
+        {% endfor %}
+    {% include 'pagenation.html' %}
+    </div>
+{% endblock %}

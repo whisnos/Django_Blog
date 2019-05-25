@@ -1,0 +1,5 @@
+*.txt
+MyBlog/settings.py
+*.pyc
+.idea/
+static/

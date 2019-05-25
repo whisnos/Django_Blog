@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/test/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/test/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/test/style.css">
+{#    <link rel="stylesheet" type="text/css" href="/static/css/test/cityLayout.css">#}
+{#    <link rel="stylesheet" type="text/css" href="/static/css/test/lq.datetimepick.css">#}
+{% endblock %}
+{% block title %}
+    个人中心页面
+{% endblock %}
+{% block bigcontain %}
+    <section>
+        <div class="wp list personal_list">
+            <div class="left">
+                <ul>
+                    <li class="active2"><a href="http://127.0.0.1:8002/user/usercenter_info/">个人资料</a></li>
+                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">我的评论</a></li>
+                    <li class="active2">
+                        <a href="#" style="position: relative;">
+                            我的消息
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="personal_des ">
+                    <div class="head" style="border:1px solid #eaeaea;">
+                        <h1>个人信息</h1>
+                    </div>
+                    <div class="inforcon">
+                        <div class="left" style="width:242px;">
+                            <div style="border-top:1px solid #eaeaea;margin-top:30px;">
+                                <a class="button btn-green btn-w100" id="jsUserResetPwd"
+                                   style="margin:80px auto;width:100px;">修改密码</a>
+                            </div>
+                        </div>
+                        <form class="perinform" id="jsEditUserForm" autocomplete="off">
+                            <ul class="right">
+                                <li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+                                    <input type="text" name="nick_name" id="nick_name" value="" maxlength="10">
+                                    <i class="error-tips"></i>
+                                </li>
+                                <li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+                                    <input type="text" name="address" id="address" placeholder="请输入你的地址" value=""
+                                           maxlength="10">
+                                    <i class="error-tips"></i>
+                                </li>
+                                <li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
+                                    <input type="text" name="mobile" id="mobile" placeholder="请输入你的手机号码" value=""
+                                           maxlength="11">
+                                </li>
+                                <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
+                                    <input class="borderno" type="text" name="email" readonly="readonly"
+                                           value="853307553@qq.com" id="getemail">
+                                    <span class="green changeemai_btn" id="setemail">[修改]</span>
+                                </li>
+                                <li class="button heibtn">
+                                    <input type="button" id="jsEditUserBtn" value="保存">
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block myjs %}
+{% endblock %}

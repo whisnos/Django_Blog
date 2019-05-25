@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-lg-12">
+        <span class="pagination_count" style="line-height: 40px;">共{{ pages.total }}条记录 | 每页{{pages.page_size}}条</span>
+        <ul class="pagination pagination-lg   pull-right" style="margin: 0 0 ;">
+            {% if pages.is_prev == 1 %}
+             <li>
+                 <a href="{{ pages.url }}?&p=1" ><span>首页</span></a>
+             </li>
+            {%  endif %}
+
+            {% for idx in pages.range %}
+                {% if idx == pages.current %}
+                    <li class="active"><a href="javascript:void(0);">{{ idx }}</a></li>
+                {% else %}
+                    <li><a href="{{ pages.url }}?&p={{idx}}">{{ idx }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if pages.is_next == 1 %}
+             <li>
+                    <a href="{{ pages.url }}?&p={{ pages.total_pages }}" ><span>尾页</span></a>
+             </li>
+            {%  endif %}
+        </ul>
+    </div>
+</div>

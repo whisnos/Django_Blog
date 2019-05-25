@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    搜索内容列表页
+{% endblock %}
+{% block content %}
+    <div class="content">
+            <div class="title">
+                <h3 style="line-height: 1.3">搜索到相关{{ cont }}内容如下：</h3>
+            </div>
+
+            {% for art in all_articles %}
+                <article class="excerpt excerpt-{{ forloop.counter }}"><a class="focus" href="{% url 'detail' art.id %}"
+                                                                          title="{{ art.title }}" target="_blank"><img
+                        class="thumb" data-original="{{ MEDIA_URL }}{{ art.image }}"
+                        src="{{ MEDIA_URL }}{{ art.image }}" alt="{{ art.title }}"
+                        style="display: inline;"></a>
+                    <header><a class="cat" href="{% url 'list' art.category.path_name %}" title="{{ art.category.name }}">{{ art.category.name }}<i></i></a>
+                        <h2><a href="{% url 'detail' art.id %}" title="{{ art.title }}"
+                               target="_blank">{{ art.title }}</a></h2>
+                    </header>
+                    <p class="meta">
+                        <time class="time"><i class="glyphicon glyphicon-time"></i> {{ art.add_time }}</time>
+                        <span class="views"><i class="glyphicon glyphicon-eye-open"></i>{{ art.click_num }}</span> <a
+                            class="comment"
+                            href="##comment"
+                            title="评论"
+                            target="_blank"><i
+                            class="glyphicon glyphicon-comment"></i>{{ art.cont_num }}</a></p>
+                    <p class="note">{{ art.desc }}</p>
+                </article>
+            {% endfor %}
+
+            <nav class="pagination" style="display: none;">
+                <ul>
+                    <li class="prev-page"></li>
+                    <li class="active"><span>1</span></li>
+                    <li><a href="?page=2">2</a></li>
+                    <li class="next-page"><a href="?page=2">下一页</a></li>
+                    <li><span>共 2 页</span></li>
+                </ul>
+            </nav>
+            </div>
+{% endblock %}
+{% block TongJi %}
+{% endblock %}
