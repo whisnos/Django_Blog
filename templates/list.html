@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ cate_obj.title }}_D5有情怀的Bug{% endblock %}
+{% block title %}{{ cate_obj.title }}_Debug5_官方网站{% endblock %}
 {% block content %}
     <div class="content">
         <div class="title">
@@ -28,15 +28,7 @@
             </article>
         {% endfor %}
 
-        <nav class="pagination" style="display: none;">
-            <ul>
-                <li class="prev-page"></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="?page=2">2</a></li>
-                <li class="next-page"><a href="?page=2">下一页</a></li>
-                <li><span>共 2 页</span></li>
-            </ul>
-        </nav>
+        {% include 'pagenation.html' %}
     </div>
 {% endblock %}
 {% block Tag %}

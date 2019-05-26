@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -77,20 +78,20 @@
         <div class="container">
             <div class="header-topbar hidden-xs link-border">
                 <ul class="site-nav topmenu">
-                    <li><a href="#">标签云</a></li>
-                    <li><a href="#" rel="nofollow">读者墙</a></li>
-                    <li><a href="#" title="RSS订阅">
-                        <i class="fa fa-rss">
-                        </i> RSS订阅
-                    </a></li>
+                    <!--<li><a href="#">标签云</a></li>-->
+                    <!--<li><a href="#" rel="nofollow">读者墙</a></li>-->
+                    <!--<li><a href="#" title="RSS订阅">-->
+                        <!--<i class="fa fa-rss">-->
+                        <!--</i> RSS订阅-->
+                    <!--</a></li>-->
                 </ul>
-                勤记录 懂分享
+                但尽人事 莫问前程
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
                         class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-                <h1 class="logo hvr-bounce-in"><a href="#" title=""><img src="/static/images/201610171329086541.png"
+                <h1 class="logo hvr-bounce-in"><a href="{% url 'index' %}" title=""><img src="/static/images/logo.png"
                                                                                alt=""></a></h1>
             </div>
             <div class="collapse navbar-collapse" id="header-navbar">
@@ -103,7 +104,7 @@
 		</span></div>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-cont="勤记录 懂分享" title="勤记录 懂分享" href="{% url 'index' %}">首页</a></li>
+                    <li><a data-cont="但尽人事 莫问前程" title="但尽人事 莫问前程" href="{% url 'index' %}">首页</a></li>
                     {% for cate in all_category %}
                         <li><a data-cont="python" title="{{ cate.name }}"
                                href="{% url 'list' cate.path_name %}">{{ cate.name }}</a></li>
@@ -138,7 +139,7 @@
 <footer class="footer">
     <div class="container">
         <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="#" target="_blank" title="#">xxx</a>
-            - Collect from <a href="http://www.cssmoban.com/" title="" target="_blank">xxx</a></p>
+            - Collect from <a href="#" title="" target="_blank">xxx</a></p>
     </div>
     <div id="gotop" style="display: block;"><a class="gotop"></a>
     </div>

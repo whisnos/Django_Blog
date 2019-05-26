@@ -24,7 +24,7 @@ def index(request):
 	new_articles = new_articles.order_by('-usercomment__add_time')[:12]
 	new_category = [art.category for art in new_articles]
 	new_category = set(new_category)
-	recommend_article = ArticleInfo.objects.filter(is_recommend=True).all()[:2]
+	recommend_article = ArticleInfo.objects.filter(is_recommend=True).order_by('-add_time')[:2]
 	all_articles = ArticleInfo.objects.all()
 	article_total=all_articles.count()
 	page = int((request.GET.get('p',1)))

@@ -10,11 +10,11 @@
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <a href="#" target="_blank" title="">
-                        <img src="/static/images//201610181557196870.jpg" alt="" class="img-responsive"></a>
+                        <img src="/static/images/201610181557196870.jpg" alt="python学习分享" class="img-responsive"></a>
                 </div>
                 <div class="item">
-                    <a href="#" target="_blank" title="专业网站建设">
-                        <img src="/static/images//201610241227558789.jpg" alt="专业网站建设"
+                    <a href="#" target="_blank" title="python学习分享">
+                        <img src="/static/images/201610241227558789.jpg" alt="python学习分享"
                              class="img-responsive"></a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
         {% for art in recommend_article %}
             <article class="excerpt-minic excerpt-minic-index">
                 <h2><span class="red">【推荐】</span><a target="_blank" href="{% url 'detail' art.id %}"
-                                                    title="用DTcms做一个独立博客网站（响应式模板）">{{ art.title }}</a>
+                                                    title="{{art.title}}">{{ art.title }}</a>
                 </h2>
                 <p class="note">{{ art.desc }}</p>
             </article>
