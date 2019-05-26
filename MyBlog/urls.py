@@ -28,4 +28,4 @@ urlpatterns = [
 	url(r'^search/$',search,name='search'),
 	url(r'^user_active/(\w+)/$',user_active,name='user_active'),
 	url(r'^user_comment/(\d+)/$',user_comment,name='user_comment')
-]
+]#
