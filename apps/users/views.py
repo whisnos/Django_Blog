@@ -1,7 +1,7 @@
 import datetime
 
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import logout, login, authenticate
 from django.db.models import Q
 
@@ -33,7 +33,7 @@ def index(request):
 	today_time=datetime.datetime.now().strftime("%Y-%m-%d")
 	all_day=Caltime('2016-12-13',today_time)
 	page_params = {
-		'total': all_articles.count(),
+		'total': article_total,
 		'page_size': PAGE_SIZE,
 		'page': page,
 		'display': DISPLAY,
@@ -166,3 +166,5 @@ def user_center(request):
 	return render(request, 'center.html', {
 		'all_category': all_category
 	})
+def page_not_found(request):
+	return render_to_response('404.html')

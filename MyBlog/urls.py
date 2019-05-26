@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from users.views import index,search,user_active
+from users.views import index,search,user_active,page_not_found
 from articles.views import list_detail,article_detail
 from operations.views import user_comment
 import xadmin
@@ -28,4 +28,5 @@ urlpatterns = [
 	url(r'^search/$',search,name='search'),
 	url(r'^user_active/(\w+)/$',user_active,name='user_active'),
 	url(r'^user_comment/(\d+)/$',user_comment,name='user_comment')
-]#
+]
+handler404 = page_not_found #改动2
