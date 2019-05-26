@@ -24,7 +24,7 @@ class Category(models.Model):
 class ArticleInfo(models.Model):
 	title = models.CharField(max_length=50, verbose_name='标题')
 	desc = models.TextField(max_length=80, verbose_name='简介')
-	content = UEditorField(verbose_name='文章内容', width=700, height=400, toolbars='full', imagePath='ueditor/image/%y/%m/',
+	content = UEditorField(verbose_name='文章内容', width=1200, height=400, toolbars='full', imagePath='ueditor/image/%y/%m/',
                  filePath='ueditor/files/%y/%m/', upload_settings={'imageMaxSizing': 1024000}, default='')
 	click_num = models.IntegerField(default=0, verbose_name='浏览数')
 	cont_num = models.IntegerField(default=0, verbose_name='评论数')
