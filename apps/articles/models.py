@@ -20,12 +20,15 @@ class Category(models.Model):
 		verbose_name = '类别表'
 		verbose_name_plural = verbose_name
 
+import time
 
+m_y=(time.strftime("%Y"))
+m_m=(time.strftime("%m"))
 class ArticleInfo(models.Model):
 	title = models.CharField(max_length=50, verbose_name='标题')
 	desc = models.TextField(max_length=80, verbose_name='简介')
-	content = UEditorField(verbose_name='文章内容', width=1200, height=400, toolbars='full', imagePath='ueditor/image/%y/%m/',
-                 filePath='ueditor/files/%y/%m/', upload_settings={'imageMaxSizing': 1024000}, default='')
+	content = UEditorField(verbose_name='文章内容', width=1200, height=400, toolbars='full', imagePath='ueditor/image/'+m_y+'/'+m_m+'/',
+                 filePath='ueditor/files/'+m_y+'/'+m_m+'/', upload_settings={'imageMaxSizing': 1024000}, default='')
 	click_num = models.IntegerField(default=0, verbose_name='浏览数')
 	cont_num = models.IntegerField(default=0, verbose_name='评论数')
 	love_num = models.IntegerField(default=0, verbose_name='点赞数')
