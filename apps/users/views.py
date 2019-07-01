@@ -18,7 +18,6 @@ from MyBlog.settings import PAGE_SIZE,DISPLAY
 
 def index(request):
 	cate_name = Category.objects.all()
-
 	all_category = cate_name.filter(is_tab=True)
 	new_articles = ArticleInfo.objects.all()
 	new_articles = new_articles.order_by('-usercomment__add_time')[:12]
@@ -29,7 +28,6 @@ def index(request):
 	article_total=all_articles.count()
 	page = int((request.GET.get('p',1)))
 	all_tags = TagInfo.objects.all()
-	print(888888888888,page)
 	today_time=datetime.datetime.now().strftime("%Y-%m-%d")
 	all_day=Caltime('2016-12-13',today_time)
 	page_params = {
