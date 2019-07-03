@@ -19,10 +19,10 @@ from MyBlog.settings import PAGE_SIZE,DISPLAY
 def index(request):
 	cate_name = Category.objects.all()
 	all_category = cate_name.filter(is_tab=True)
-	new_articles = ArticleInfo.objects.all().order_by('-usercomment__add_time').select_related('category')[:12]
-	# new_articles = new_articles.order_by('-usercomment__add_time')[:12]
-	# new_category = [art.category for art in new_articles]
-	# new_category = set(new_category)
+	new_articles = ArticleInfo.objects.all().order_by('-usercomment__add_time')
+	new_articles = new_articles.order_by('-usercomment__add_time')[:12]
+	new_category = [art.category for art in new_articles]
+	new_category = set(new_category)
 	recommend_article = ArticleInfo.objects.filter(is_recommend=True).order_by('-add_time')[:2]
 	all_articles = ArticleInfo.objects.all()
 	article_total=all_articles.count()
@@ -46,7 +46,7 @@ def index(request):
 		'recommend_article': recommend_article,
 		'all_articles': all_articles,
 		'all_tags': all_tags,
-		'new_category': '',
+		'new_category': new_category,
 		'pages': pages,
 		'all_day':all_day,
 		'article_total':article_total,
