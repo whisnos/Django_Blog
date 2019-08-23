@@ -29,7 +29,7 @@ def index(request):
 	page = int((request.GET.get('p',1)))
 	all_tags = TagInfo.objects.all()
 	today_time=datetime.datetime.now().strftime("%Y-%m-%d")
-	all_day=Caltime('2017-12-13',today_time)
+	all_day=Caltime('2017-12-12',today_time)
 	page_params = {
 		'total': article_total,
 		'page_size': PAGE_SIZE,
