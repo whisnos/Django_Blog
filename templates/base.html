@@ -134,7 +134,9 @@
             {% endblock %}
         </div>
         <div class="widget widget_hot">
+        {% block ArtName %}
             <h3>最新评论文章</h3>
+        {% endblock %}
             <ul>
                 {% for art in new_articles %}
                 <li><a title="{{ art.title }}" href="{% url 'detail' art.id %}" target="_blank"><span

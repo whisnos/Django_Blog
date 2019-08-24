@@ -63,14 +63,14 @@ def article_detail(request, artid):
 			art_obj.save()
 			all_tags = TagInfo.objects.all()
 			user_comment_list=UserComment.objects.filter(comment_article_id=int(artid))
-			cate_name = Category.objects.all()
+			# cate_name = Category.objects.all()
 			return render(request, 'detail.html', {
 				'all_category': all_category,
 				'art_obj': art_obj,
 				'new_articles': new_articles,
 				'all_tags':all_tags,
 				'user_comment_list':user_comment_list,
-				'cate_name': cate_name
+				# 'cate_name': cate_name
 			})
 		else:
 			return redirect('/')

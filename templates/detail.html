@@ -111,6 +111,24 @@
         </div>
     </div>
 {% endblock %}
+{% block Tag %}
+    <div class="widget widget_sentence">
+        <h3>标签云</h3>
+        <div class="widget-sentence-content">
+            <ul class="plinks ptags">
+{#                直接 管道符 进行切片 和 倒序#}
+                {% for tag in all_tags %}
+                    <li><a href="{% url 'list' tag.category.path_name %}?tag={{ tag.id }}" title="{{ tag.name }}"
+                           draggable="false">{{ tag.name }} <span class="badge">{{ tag.arttag_set.count }}</span></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+{% block ArtName %}
+            <h3>最新发表文章</h3>
+        {% endblock %}
 {% block TongJi %}
 {% endblock %}
 {% block js %}
