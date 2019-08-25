@@ -65,4 +65,20 @@
         {% endfor %}
     {% include 'pagenation.html' %}
     </div>
+    {% block Tag %}
+            <div class="widget widget_sentence">
+                <h3>标签云</h3>
+                <div class="widget-sentence-content">
+                    <ul class="plinks ptags">
+{#                        直接 管道符 进行切片 和 倒序#}
+                        {% for cate in cate_name|slice:':10:-1' %}
+                        <li><a href="{% url 'list' cate.path_name %}" title="{{ cate.name }}"
+                               draggable="false">{{ cate.name }} <span
+                                class="badge">{{ cate.articleinfo_set.count }}</span></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endblock %}
 {% endblock %}

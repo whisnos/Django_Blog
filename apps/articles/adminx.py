@@ -1,5 +1,5 @@
 import xadmin
-from articles.models import TagInfo, ArtTag, ArticleInfo
+from articles.models import TagInfo, ArticleInfo
 
 
 class TagInfoXadmin(object):
@@ -13,16 +13,16 @@ class ArtTagXadmin(object):
 class ArticleInfoXadmin(object):
 	list_display = ['title', 'click_num', 'cont_num', 'author', 'category', 'add_time']
 	style_fields = {'content': 'ueditor'}
-
-	class ArtTagInlines(object):
-		model = ArtTag
-		style = 'tab'
-		# exclude=['add_time']
-		extra = 2
-
-	inlines = [ArtTagInlines]
+	# 添加附加选项表
+	# class ArtTagInlines(object):
+	# 	model = ArtTag
+	# 	style = 'tab'
+	# 	# exclude=['add_time']
+	# 	extra = 2
+	#
+	# inlines = [ArtTagInlines]
 
 
 xadmin.site.register(TagInfo, TagInfoXadmin)
-xadmin.site.register(ArtTag, ArtTagXadmin)
+# xadmin.site.register(ArtTag, ArtTagXadmin)
 xadmin.site.register(ArticleInfo, ArticleInfoXadmin)

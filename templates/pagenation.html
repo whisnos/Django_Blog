@@ -12,7 +12,7 @@
                 {% if idx == pages.current %}
                     <li class="active"><a href="javascript:void(0);">{{ idx }}</a></li>
                 {% else %}
-                    <li><a href="{{ pages.url }}?&p={{idx}}">{{ idx }}</a></li>
+                    <li><a href="{{ pages.url }}?&p={{idx}}&tag={{tagnum}}">{{ idx }}</a></li>
                 {% endif %}
             {% endfor %}
             {% if pages.is_next == 1 %}
