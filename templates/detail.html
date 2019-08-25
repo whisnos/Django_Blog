@@ -119,7 +119,7 @@
 {#                直接 管道符 进行切片 和 倒序#}
                 {% for tag in all_tags %}
                     <li><a href="{% url 'list' tag.category.path_name %}?tag={{ tag.id }}" title="{{ tag.name }}"
-                           draggable="false">{{ tag.name }} <span class="badge">{{ tag.arttag_set.count }}</span></a>
+                           draggable="false">{{ tag.name }} <span class="badge">{{ tag.articleinfo_set.count }}</span></a>
                     </li>
                 {% endfor %}
             </ul>
