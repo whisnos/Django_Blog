@@ -48,10 +48,12 @@ def add_article():
 		for file in files:
 			ART = ArticleInfo()
 			with open(os.path.join(path, file), 'r+') as fr:
+				print('A')
 				ART.content = fr.read()
 				ART.desc=ART.title=file.split('.')[0]
 				ART.author = a
 				ART.category = c
+				print('B')
 				# ART.save()
 			print('发表成功 ',ART.title,datetime.datetime.now())
 			os.remove(path + '/' + file)
