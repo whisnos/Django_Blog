@@ -49,7 +49,10 @@ def add_article():
 			ART = ArticleInfo()
 			with open(os.path.join(path, file), 'r+') as fr:
 				print('A')
-				ART.content = fr.read()
+				try:
+					ART.content = fr.read()
+				except Exception as e:
+					print('e',e)
 				print('B')
 				ART.desc=ART.title=file.split('.')[0]
 				print('C')
