@@ -31,7 +31,7 @@ def user_comment(request, artid):
 	return JsonResponse({'status': 'faile', 'msg': '内容太短了'})
 
 import datetime
-def add_article(request):
+def add_article():
 
 	# ART.title=1
 	# ART.desc=1
