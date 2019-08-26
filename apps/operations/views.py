@@ -50,10 +50,12 @@ def add_article():
 			with open(os.path.join(path, file), 'r+') as fr:
 				print('A')
 				ART.content = fr.read()
-				ART.desc=ART.title=file.split('.')[0]
-				ART.author = a
-				ART.category = c
 				print('B')
+				ART.desc=ART.title=file.split('.')[0]
+				print('C')
+				ART.author = a
+				print('D')
+				ART.category = c
 				# ART.save()
 			print('发表成功 ',ART.title,datetime.datetime.now())
 			os.remove(path + '/' + file)
