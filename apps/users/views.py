@@ -40,7 +40,7 @@ def index(request):
 	pages = iPagination(page_params)
 	offset = (page - 1) * PAGE_SIZE
 	all_articles=all_articles.order_by('-add_time')[offset:offset+PAGE_SIZE:]
-	return render(request, 'abc.html', {
+	return render(request, 'index.html', {
 		'all_category': all_category,
 		'new_articles': new_articles,
 		'recommend_article': recommend_article,
