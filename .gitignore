@@ -4,3 +4,5 @@ MyBlog/settings.py
 .idea/
 static/
 config/
+artfile/
+.doc
