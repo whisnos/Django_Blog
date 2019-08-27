@@ -32,38 +32,23 @@ def user_comment(request, artid):
 
 import datetime
 def add_article():
-
-	# ART.title=1
-	# ART.desc=1
 	a=UserProfile.objects.filter(id=10).first()
 	c=Category.objects.filter(id=1).first()
-
-	# ART.content="11111111111"
-	# ART.save()
-	print(111)
 	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
 	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		print('files', files)
-		N = 0
 		for file in files:
 			ART = ArticleInfo()
 			with open(os.path.join(path, file), 'r+') as fr:
-				print('A')
 				try:
 					ART.content = fr.read()
 				except Exception as e:
-					print('e',e)
-				print('B')
+					print('读取异常',e)
+					continue
 				ART.desc=ART.title=file.split('.')[0]
-				print('C')
 				ART.author = a
-				print('D')
 				ART.category = c
-				# ART.save()
-			print('发表成功 ',ART.title,datetime.datetime.now())
+				ART.save()
+			print(ART.title,'发表成功 ',datetime.datetime.now())
 			os.remove(path + '/' + file)
-			N += 1
-			if N == 2:
-				break
-	N = 0
-	# return JsonResponse({'status': 'ok', 'msg': '内容太短了'})
+			break
