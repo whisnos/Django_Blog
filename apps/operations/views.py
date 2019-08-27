@@ -30,52 +30,60 @@ def user_comment(request, artid):
 		return JsonResponse({'status': 'faile', 'msg': '请登录再评论'})
 	return JsonResponse({'status': 'faile', 'msg': '内容太短了'})
 
+
 import datetime
+from django.db import connection
+
+cursor = connection.cursor()
+
+
 def add_article():
 	''' 一次发5篇'''
-	a=UserProfile.objects.filter(id=10).first()
-	c=Category.objects.filter(id=1).first()
-	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
-	N=0
-	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
-		print('files', files)
+	N = 0
+	for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
+		# for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
-			ART = ArticleInfo()
-			with open(os.path.join(path, file), 'r+') as fr:
+			con=''
+			with open(os.path.join(path, file), 'r') as fr:
 				try:
-					ART.content = fr.read()
+					for line in fr.readlines():
+						line=line.replace(' ','&nbsp;')
+						con += '<p>'+line+'</p>'
 				except Exception as e:
-					print('读取异常',e)
+					print('读取异常', e)
 					continue
-				ART.desc=ART.title=file.split('.')[0]
-				ART.author = a
-				ART.category = c
-				ART.save()
-			print(ART.title,'发表成功 ',datetime.datetime.now())
+				title = file.split('.')[0]
+				# add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg','2019-04-23 16:22:00')"
+				cursor.execute(sql)
+			print(title, '发表成功 ', datetime.datetime.now())
 			os.remove(path + '/' + file)
-			N+=1
-			if N ==5:
-				N=0
+			N += 1
+			if N == 5:
+				N = 0
 				break
+	# return JsonResponse({'status': 'faile', 'msg': '内容太短了'})
+
+
 def add_Marticle():
 	''' 每隔6小时发一篇'''
-	a=UserProfile.objects.filter(id=10).first()
-	c=Category.objects.filter(id=1).first()
-	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
-	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
-		print('files', files)
+	for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
+	# for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
-			ART = ArticleInfo()
-			with open(os.path.join(path, file), 'r+') as fr:
+			con=''
+			with open(os.path.join(path, file), 'r') as fr:
 				try:
-					ART.content = fr.read()
+					for line in fr.readlines():
+						line=line.replace(' ','&nbsp;')
+						con += '<p>'+line+'</p>'
 				except Exception as e:
-					print('读取异常',e)
+					print('读取异常', e)
 					continue
-				ART.desc=ART.title=file.split('.')[0]
-				ART.author = a
-				ART.category = c
-				ART.save()
-			print(ART.title,'发表成功 ',datetime.datetime.now())
+				title = file.split('.')[0]
+				# add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg','2019-04-23 16:22:00')"
+				cursor.execute(sql)
+			print(title, '发表成功 ', datetime.datetime.now())
 			os.remove(path + '/' + file)
 			break
+	# return JsonResponse({'status': 'faile', 'msg': '内容太短了'})
