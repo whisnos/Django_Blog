@@ -32,6 +32,33 @@ def user_comment(request, artid):
 
 import datetime
 def add_article():
+	''' 一次发5篇'''
+	a=UserProfile.objects.filter(id=10).first()
+	c=Category.objects.filter(id=1).first()
+	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
+	N=0
+	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
+		print('files', files)
+		for file in files:
+			ART = ArticleInfo()
+			with open(os.path.join(path, file), 'r+') as fr:
+				try:
+					ART.content = fr.read()
+				except Exception as e:
+					print('读取异常',e)
+					continue
+				ART.desc=ART.title=file.split('.')[0]
+				ART.author = a
+				ART.category = c
+				ART.save()
+			print(ART.title,'发表成功 ',datetime.datetime.now())
+			os.remove(path + '/' + file)
+			N+=1
+			if N ==5:
+				N=0
+				break
+def add_Marticle():
+	''' 每隔6小时发一篇'''
 	a=UserProfile.objects.filter(id=10).first()
 	c=Category.objects.filter(id=1).first()
 	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
