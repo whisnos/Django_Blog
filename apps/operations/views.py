@@ -60,7 +60,7 @@ def add_article():
 			print(title, '发表成功 ', datetime.datetime.now())
 			os.remove(path + '/' + file)
 			N += 1
-			if N == 5:
+			if N == 3:
 				N = 0
 				break
 	# return JsonResponse({'status': 'faile', 'msg': '内容太短了'})
@@ -72,6 +72,7 @@ def add_Marticle():
 	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
 			con=''
+			print(' file', file)
 			with open(os.path.join(path, file), 'r') as fr:
 				try:
 					for line in fr.readlines():
