@@ -44,6 +44,7 @@ def add_article():
 	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
 			con=''
+			print(' file', file)
 			with open(os.path.join(path, file), 'r') as fr:
 				try:
 					for line in fr.readlines():
