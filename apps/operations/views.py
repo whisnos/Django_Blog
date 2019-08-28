@@ -40,8 +40,8 @@ cursor = connection.cursor()
 def add_article():
 	''' 一次发5篇'''
 	N = 0
-	for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
-		# for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
+	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
+	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
 			con=''
 			with open(os.path.join(path, file), 'r') as fr:
@@ -67,8 +67,8 @@ def add_article():
 
 def add_Marticle():
 	''' 每隔6小时发一篇'''
-	for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
-	# for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
+	# for (path, dirs, files) in os.walk(r'D:\www\myblog\apps\operations\artfile'):
+	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
 			con=''
 			with open(os.path.join(path, file), 'r') as fr:
