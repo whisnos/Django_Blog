@@ -54,9 +54,13 @@ def add_article():
 					print('读取异常', e)
 					continue
 				title = file.split('.')[0]
-				# add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg','2019-04-23 16:22:00')"
-				cursor.execute(sql)
+				add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg'"+ "," + r"'"+"{}".format(add_time)+ r"'"+")"
+				try:
+					cursor.execute(sql)
+				except Exception as e:
+					print('写入异常', e,title)
+					continue
 			print(title, '发表成功 ', datetime.datetime.now())
 			os.remove(path + '/' + file)
 			N += 1
@@ -82,9 +86,13 @@ def add_Marticle():
 					print('读取异常', e)
 					continue
 				title = file.split('.')[0]
-				# add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg','2019-04-23 16:22:00')"
-				cursor.execute(sql)
+				add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg'"+ "," + r"'"+"{}".format(add_time)+ r"'"+")"
+				try:
+					cursor.execute(sql)
+				except Exception as e:
+					print('写入异常', e,title)
+					continue
 			print(title, '发表成功 ', datetime.datetime.now())
 			os.remove(path + '/' + file)
 			break
