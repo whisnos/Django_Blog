@@ -1,4 +1,5 @@
 import os
+import random
 
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, HttpResponse
@@ -44,7 +45,6 @@ def add_article():
 	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
 			con=''
-			print(' file', file)
 			with open(os.path.join(path, file), 'r') as fr:
 				try:
 					for line in fr.readlines():
@@ -55,7 +55,8 @@ def add_article():
 					continue
 				title = file.split('.')[0]
 				add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg'"+ "," + r"'"+"{}".format(add_time)+ r"'"+")"
+				num = random.choice('123456789')
+				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0"+ ","+"'article/default"+str(num)+".jpg'"+ "," + r"'"+"{}".format(add_time)+ r"'"+")"
 				try:
 					cursor.execute(sql)
 				except Exception as e:
@@ -76,7 +77,6 @@ def add_Marticle():
 	for (path, dirs, files) in os.walk(r'/home/Debug/MyBlog/apps/operations/artfile'):
 		for file in files:
 			con=''
-			print(' file', file)
 			with open(os.path.join(path, file), 'r') as fr:
 				try:
 					for line in fr.readlines():
@@ -87,7 +87,8 @@ def add_Marticle():
 					continue
 				title = file.split('.')[0]
 				add_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0,'article/default8.jpg'"+ "," + r"'"+"{}".format(add_time)+ r"'"+")"
+				num=random.choice('123456789')
+				sql="insert into `articles_articleinfo`(`title`,`desc`,`content`,`author_id`,`category_id`,`click_num`,`cont_num`,`love_num`,`is_recommend`,`image`,`add_time`) values (" + r"'"+"{}".format(title)+ r"'" + "," + r"'"+"{}".format(title)+ r"'"+ "," + r"'"+"{}".format(con)+ r"'" + ",10,1,0,0,0,0"+ ","+"'article/default"+str(num)+".jpg'"+ "," + r"'"+"{}".format(add_time)+ r"'"+")"
 				try:
 					cursor.execute(sql)
 				except Exception as e:

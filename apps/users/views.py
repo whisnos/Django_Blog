@@ -18,7 +18,8 @@ from MyBlog.settings import PAGE_SIZE,DISPLAY
 
 def index(request):
 	cate_name = Category.objects.all()
-	all_category = cate_name.filter(is_tab=True)
+	all_category = cate_name.filter(is_tab=True).order_by('-add_time')
+	print('all_category',all_category)
 	new_articles = ArticleInfo.objects.all().order_by('-usercomment__add_time')
 	new_articles = new_articles.order_by('-usercomment__add_time')[:12]
 	new_category = [art.category for art in new_articles]

@@ -14,7 +14,7 @@ class ArticleInfoXadmin(object):
 	list_display = ['title', 'click_num', 'cont_num', 'author', 'category','taginfo', 'add_time']
 	style_fields = {'content': 'ueditor'}
 	search_fields = ['title']
-	list_editable = ['taginfo',]
+	list_editable = ['taginfo','category']
 	# 添加附加选项表
 	# class ArtTagInlines(object):
 	# 	model = ArtTag

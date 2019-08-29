@@ -8,7 +8,7 @@ from operations.models import UserComment
 
 
 def list_detail(request, cate):
-	all_category = Category.objects.filter(is_tab=True).all()
+	all_category = Category.objects.filter(is_tab=True).order_by('add_time')
 	cate_queryset = Category.objects.filter(path_name=cate)
 	new_articles = ArticleInfo.objects.all()
 	new_articles = new_articles.order_by('-add_time')[:8]
@@ -72,10 +72,9 @@ def list_detail(request, cate):
 
 def article_detail(request, artid):
 	if artid:
-		all_category = Category.objects.filter(is_tab=True).all()
+		all_category = Category.objects.filter(is_tab=True).order_by('add_time')
 		art_queryset = ArticleInfo.objects.filter(id=int(artid))
-		new_articles = ArticleInfo.objects.all()
-		new_articles = new_articles.order_by('-add_time')[:8]
+		new_articles = ArticleInfo.objects.all().order_by('-add_time')[:8]
 
 		if art_queryset:
 			art_obj = art_queryset[0]
