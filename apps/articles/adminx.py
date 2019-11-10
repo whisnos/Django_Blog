@@ -11,10 +11,10 @@ class TagInfoXadmin(object):
 
 
 class ArticleInfoXadmin(object):
-	list_display = ['title', 'click_num', 'cont_num', 'author', 'category','taginfo', 'add_time']
+	list_display = ['title', 'click_num', 'cont_num', 'author', 'category','taginfo','image', 'add_time']
 	style_fields = {'content': 'ueditor'}
 	search_fields = ['title']
-	list_editable = ['taginfo','category']
+	list_editable = ['taginfo','category','image']
 	# 添加附加选项表
 	# class ArtTagInlines(object):
 	# 	model = ArtTag
