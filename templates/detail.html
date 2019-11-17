@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}{{ art_obj.title }}_Debug5{% endblock %}
+{% block mydes %}<meta name="description" content={{ art_obj.title }}>{% endblock %}
 {% block content %}
     <div class="content">
         <header class="article-header">
@@ -39,46 +40,52 @@
                 }, "share": {}
             };
             with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=0.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+            <p style="white-space: normal;"><img src="http://img.baidu.com/hi/jx2/j_0002.gif"/></p>
+            <p>本博客源码Github地址：</p>
+            <p><a href="https://github.com/whisnos/myblog" target="_blank" title="请随手给个star，谢谢"
+                  textvalue="https://github.com/whisnos/myblog">https://github.com/whisnos/myblog</a></p>
+            <p>请随手给个star，谢谢！</p>
+            </p>
         </article>
 
-            <div class="article-shang">
-                <p><a href="javascript:void(0)" rel="nofollow" style="color: #fff" onclick="dashangToggle()"
-                      class="dashang" title="如文章有帮助到你，支持一下" draggable="false">打赏</a>
+        <div class="article-shang">
+            <p><a href="javascript:void(0)" rel="nofollow" style="color: #fff" onclick="dashangToggle()"
+                  class="dashang" title="如文章有帮助到你，支持一下" draggable="false">打赏</a>
+            </p>
+        </div>
+        <div class="hide_box" style="display: none;">
+        </div>
+        <div class="shang_box" style="display: none;">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭" draggable="false">
+                <img src="/static/images/close.jpg" alt="取消" draggable="false"></a>
+            <img class="shang_logo" src="/static/images/logo.png"
+                 alt="D5网" draggable="false">
+            <div class="shang_tit">
+                <p>
+                    感谢您的支持，我会继续努力的!</p>
+            </div>
+            <div class="shang_payimg">
+                <img src="/static/images/wxpay.png" alt="扫码支持" title="微信扫一扫"
+                     draggable="false">
+            </div>
+            <div class="pay_explain">
+                扫码打赏，您说多少就多少
+            </div>
+            <div class="shang_payselect">
+                <img src="/static/images/wechat.jpg" alt="微信"
+                     draggable="false">
+            </div>
+            <div class="shang_info">
+                <p>
+                    打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦
+                </p>
+                <p>
+                    分享从这里开始，精彩与您同在
                 </p>
             </div>
-            <div class="hide_box" style="display: none;">
-            </div>
-            <div class="shang_box" style="display: none;">
-                <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭" draggable="false">
-                    <img src="/static/images/close.jpg" alt="取消" draggable="false"></a>
-                <img class="shang_logo" src="/static/images/logo.png"
-                     alt="D5网" draggable="false">
-                <div class="shang_tit">
-                    <p>
-                        感谢您的支持，我会继续努力的!</p>
-                </div>
-                <div class="shang_payimg">
-                    <img src="/static/images/wxpay.png" alt="扫码支持" title="微信扫一扫"
-                         draggable="false">
-                </div>
-                <div class="pay_explain">
-                    扫码打赏，您说多少就多少
-                </div>
-                <div class="shang_payselect">
-                    <img src="/static/images/wechat.jpg" alt="微信"
-                                                 draggable="false">
-                </div>
-                <div class="shang_info">
-                    <p>
-                        打开<span id="shang_pay_txt">微信</span>扫一扫，即可进行扫码打赏哦
-                    </p>
-                    <p>
-                        分享从这里开始，精彩与您同在
-                    </p>
-                </div>
-            </div>
+        </div>
 
-   <a href="javascript:;" οnclick="repeat()"></a>
+        <a href="javascript:;" οnclick="repeat()"></a>
         <div id="postcomments" class="addcomment">
             <ol id="comment_list" class="commentlist">
                 {% for com in user_comment_list %}
@@ -116,10 +123,11 @@
         <h3>标签云</h3>
         <div class="widget-sentence-content">
             <ul class="plinks ptags">
-{#                直接 管道符 进行切片 和 倒序#}
+                {#                直接 管道符 进行切片 和 倒序#}
                 {% for tag in all_tags %}
                     <li><a href="{% url 'list' tag.category.path_name %}?tag={{ tag.id }}" title="{{ tag.name }}"
-                           draggable="false">{{ tag.name }} <span class="badge">{{ tag.articleinfo_set.count }}</span></a>
+                           draggable="false">{{ tag.name }} <span
+                            class="badge">{{ tag.articleinfo_set.count }}</span></a>
                     </li>
                 {% endfor %}
             </ul>
@@ -127,8 +135,8 @@
     </div>
 {% endblock %}
 {% block ArtName %}
-            <h3>最新发表文章</h3>
-        {% endblock %}
+    <h3>最新发表文章</h3>
+{% endblock %}
 {% block TongJi %}
 {% endblock %}
 {% block js %}

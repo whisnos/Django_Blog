@@ -65,7 +65,7 @@ def add_article():
 			print(title, '发表成功 ', datetime.datetime.now())
 			os.remove(path + '/' + file)
 			N += 1
-			if N == 3:
+			if N == 1:
 				N = 0
 				break
 	# return JsonResponse({'status': 'faile', 'msg': '内容太短了'})
