@@ -25,11 +25,11 @@ def send_email_code(e, type):
 	send_type = type
 	if send_type == '1':
 		send_title = '欢迎注册Debug5'
-		send_content = '点击链接激活账号\n http://106.12.89.79:8000/user_active/' + code
+		send_content = '点击链接激活账号\n http://www.debug5.com/user_active/' + code
 		send_mail(send_title, send_content, EMAIL_FROM, [e])
 	if send_type == '2':
 		send_title = '请重置密码_From Debug5'
-		send_content = '点击链接重置密码\n http://106.12.89.79:8000/user/user_reset/' + code
+		send_content = '点击链接重置密码\n http://www.debug5.com/user/user_reset/' + code
 		send_mail(send_title, send_content, EMAIL_FROM, [e])
 	if send_type == '3':
 		send_title = '请重置邮箱_From Debug5'
