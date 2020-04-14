@@ -5,3 +5,4 @@ MyBlog/settings.py
 static/
 artfile/
 .doc
+settings.py
