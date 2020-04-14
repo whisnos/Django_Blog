@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 	'xadmin',
 	'crispy_forms',
 	'DjangoUeditor',
-	# 'django_crontab',
+	'django_crontab',
 
 ]
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -86,8 +86,8 @@ DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'myblog',
-		'USER': '',
-		'PASSWORD': '',
+		'USER': 'root',
+		'PASSWORD': 'root',
 		'HOST': '0.0.0.0',
 		'PORT': 3306,
 	}
@@ -128,10 +128,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-	os.path.join(BASE_DIR, 'static')
-]
-# STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+# STATICFILES_DIRS = [
+# 	os.path.join(BASE_DIR, 'static')
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
@@ -144,8 +144,4 @@ EMAIL_FROM = ''
 PAGE_SIZE = 15
 DISPLAY = 4
 CRONJOBS = [
-    ('30 08 * * *', 'operations.views.add_article', '>>/home/Debug/MyBlog/config/cron.txt'),
-    ('30 11 * * *', 'operations.views.add_article', '>>/home/Debug/MyBlog/config/cron1.txt'),
-    # ('15 */6 * * *', 'operations.views.add_Marticle', '>>/home/Debug/MyBlog/config/every6.txt'),
-    # ('59 23 * * *', 'nsm.cron.make_reset', '>>/www/wwwroot/pay.bfpay.com.beta/make_reset.txt')
 ]
