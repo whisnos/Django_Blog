@@ -3,7 +3,6 @@ MyBlog/settings.py
 *.pyc
 .idea/
 static/
-config/
 artfile/
 .doc
 settings.py
