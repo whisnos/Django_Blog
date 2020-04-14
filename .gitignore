@@ -1,8 +1,6 @@
 *.txt
-MyBlog/settings.py
 *.pyc
 .idea/
 static/
 artfile/
 .doc
-settings.py
