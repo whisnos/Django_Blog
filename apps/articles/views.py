@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -93,3 +94,14 @@ def article_detail(request, artid):
 			})
 		else:
 			return redirect('/')
+
+
+def weixin_handler(request):
+
+	# signature = request.GET.get("signature",1)  # 先获取加密签名
+	# timestamp = request.GET.get("timestamp",1)  # 先获取加密签名
+	# nonce = request.GET.get("nonece",1)  # 获取随机数
+	echostr = request.GET.get("echostr")  # 获取随机字符串
+	token = "wurong"  # 自己设置的token
+	# 使用字典序排序（按照字母或数字的大小顺序进行排序）
+	return HttpResponse(token)

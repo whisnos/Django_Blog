@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from users.views import index,search,user_active,page_not_found
-from articles.views import list_detail,article_detail
+from articles.views import list_detail, article_detail, weixin_handler
 from operations.views import user_comment,add_Marticle
 import xadmin
 urlpatterns = [
@@ -28,6 +28,7 @@ urlpatterns = [
 	url(r'^search/$',search,name='search'),
 	url(r'^user_active/(\w+)/$',user_active,name='user_active'),
 	url(r'^user_comment/(\d+)/$',user_comment,name='user_comment'),
+	url(r'^weixin_token/$',weixin_handler,name='weixin_handler'),
 	# url(r'^add_article/$', add_Marticle, name='add_article')
 ]
 handler404 = page_not_found #改动2
