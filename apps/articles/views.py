@@ -97,7 +97,7 @@ def article_detail(request, artid):
 
 
 def weixin_handler(request):
-
+	print(111111111,request.GET)
 	# signature = request.GET.get("signature",1)  # 先获取加密签名
 	# timestamp = request.GET.get("timestamp",1)  # 先获取加密签名
 	# nonce = request.GET.get("nonece",1)  # 获取随机数
