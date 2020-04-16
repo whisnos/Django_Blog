@@ -1,8 +1,9 @@
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from MyBlog.settings import PAGE_SIZE, DISPLAY
+from MyBlog.settings import PAGE_SIZE, DISPLAY, EMAIL_FROM
 from articles.models import Category, ArticleInfo, TagInfo
 from help_tools.Helper import iPagination
 from operations.models import UserComment
@@ -98,6 +99,7 @@ def article_detail(request, artid):
 
 def weixin_handler(request):
 	print(111111111,request.GET)
+	send_mail(request.GET, request.GET, EMAIL_FROM, ['853307553@qq.com'])
 	# signature = request.GET.get("signature",1)  # 先获取加密签名
 	# timestamp = request.GET.get("timestamp",1)  # 先获取加密签名
 	# nonce = request.GET.get("nonece",1)  # 获取随机数
