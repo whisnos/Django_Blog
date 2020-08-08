@@ -127,9 +127,13 @@ def user_logout(request):
 def search(request):
 	all_category = Category.objects.filter(is_tab=True).all()
 	cont = request.GET.get('keyword', '')
+	if not cont:
+		return render(request, 'none.html', {
+			'all_category': all_category
+		})
 	all_articles = ArticleInfo.objects.filter(Q(title__icontains=cont) | Q(desc__icontains=cont)).all()
-	new_articles = ArticleInfo.objects.all()
-	new_articles = new_articles.order_by('-add_time')[:8]
+	new_articles = ArticleInfo.objects.all().order_by('-add_time')[:8]
+	# new_articles = new_articles.order_by('-add_time')[:8]
 	all_tags = TagInfo.objects.all()
 	if not all_articles:
 		return render(request, 'none.html', {
