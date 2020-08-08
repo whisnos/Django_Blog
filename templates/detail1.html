@@ -117,41 +117,9 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 {% block Tag %}
     <div class="widget widget_sentence">
-        <h3>实时聊天窗口...<small>当前用户:{{username}}</small> </h3>
-        <input id="username" type="hidden" class="form-control" placeholder={{username}} value={{username}}>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default" style="border: 2px black solid">
-                  <div id="msg_panel" class="panel-body" style="max-height: 350px;height:500px;overflow: scroll;overflow-x: hidden;">
-                      <ul class="list-group" id="msg_list">
-                          <li class="list-group-item list-group-item-info" style="margin-top: 5px">这里是用户....</li>
-                          <li class="list-group-item list-group-item-warning">这里是信息....</li>
-                      </ul>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-group" style="padding:0 20px;box-sizing:border-box;">
-                  <input id="send_msg" type="text" class="form-control" placeholder="你的消息">
-                  <span class="input-group-btn">
-                    <button id="send_btn" class="btn btn-default" type="button">发送</button>
-                  </span>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 20px">
-            <div class="input-group" style="padding:0 20px;box-sizing:border-box;">
-                  <input id="send_pic" type="file" class="form-control" accept="image/*">
-                    <span class="input-group-btn">
-                        <button id="send_pic_btn" class="btn btn-default" type="button">发送</button>
-                    </span>
-            </div>
-        </div>
-    </div>
         <h3>标签云</h3>
         <div class="widget-sentence-content">
             <ul class="plinks ptags">
@@ -198,72 +166,7 @@
 
                 })
             })
-        $('#send_btn').on('click',send_msg);
-        $("body").keydown(function(event) {
-             if (event.keyCode == 13) {//keyCode=13是回车键
-                 send_msg();
-             }
-         });
-        function send_msg() {
-            let send_msg = $('#send_msg');
-            let username = $('#username');
-            if (!Object.is("",send_msg.val())){
-                data = {};
-                data['type'] = "text";
-                data['username'] = username.val();
-                data['body'] = send_msg.val();
-                data = JSON.stringify(data);
-                ws.send(data);
-                send_msg.val("")
-            }
-        }
-        // 发送图片
-        $('#send_pic_btn').on('click',send_pic);
-        function send_pic() {
-            let reader = new FileReader();
-            let username = $('#username');
-            let send_body = $("#send_pic");
-            if (send_body.val()===""){
-                alert("未选择图片")
-            }
-            else {
-                let send_file = send_body[0].files[0];
-                send_file = reader.readAsDataURL(send_file);
-                // 只有使用filereader对象的onload方法中的this.result才可以获取结果哦
-                reader.onload = function () {
-                    data = {};
-                    data['type'] = "pic";
-                    data['username'] = username.val();
-                    data['body'] = this.result;
-                    data = JSON.stringify(data);
-                    ws.send(data);
-                };
-                send_body.val("")
-            }
-        }
 
-        let ws = new WebSocket('ws://122.51.23.75:9999/access');
-        ws.onmessage = function (ev) {
-            let msg_panel = $('#msg_panel')
-            let data = $.parseJSON(ev.data);
-            if (data.type === 'text'){
-                let user_info = data.user_info;
-                let user_msg = data.user_msg;
-                let msg_html = `<li class="list-group-item list-group-item-info" style="margin-top: 5px">${user_info}</li>
-                              <li class="list-group-item list-group-item-warning">${user_msg}</li>`;
-                $('#msg_list').append(msg_html);
-                // 控制滚动条始终在底部
-                msg_panel[0].scrollTop = msg_panel[0].scrollHeight
-            }
-            else if (data.type === 'pic'){
-                let user_info = data.user_info;
-                let user_msg = data.user_msg;
-                let msg_html = `<li class="list-group-item list-group-item-info" style="margin-top: 5px">${user_info}</li>
-                          <li class="list-group-item list-group-item-warning"><img src="${user_msg}"/></li>`;
-                $('#msg_list').append(msg_html);
-                msg_panel[0].scrollTop = msg_panel[0].scrollHeight
-            }
-        };
         });
 
     </script>
