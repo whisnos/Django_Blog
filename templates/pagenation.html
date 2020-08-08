@@ -12,12 +12,12 @@
                 {% if idx == pages.current %}
                     <li class="active"><a href="javascript:void(0);">{{ idx }}</a></li>
                 {% else %}
-                    <li><a href="{{ pages.url }}?&p={{idx}}&tag={{tagnum}}">{{ idx }}</a></li>
+                    <li><a href="{{ pages.url }}?&p={{idx}}&tag={{tagnum}}&keyword={{ cont }}">{{ idx }}</a></li>
                 {% endif %}
             {% endfor %}
             {% if pages.is_next == 1 %}
              <li>
-                    <a href="{{ pages.url }}?&p={{ pages.total_pages }}" ><span>尾页</span></a>
+                    <a href="{{ pages.url }}?&p={{ pages.total_pages }}&keyword={{ cont }}" ><span>尾页</span></a>
              </li>
             {%  endif %}
         </ul>
