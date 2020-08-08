@@ -131,8 +131,8 @@ def search(request):
 		return render(request, 'none.html', {
 			'all_category': all_category
 		})
-	all_articles = ArticleInfo.objects.filter(Q(title__icontains=cont) | Q(desc__icontains=cont)).all().order_by('-id')
-	new_articles = ArticleInfo.objects.all().order_by('-add_time')[:8]
+	all_articles = ArticleInfo.objects.filter(Q(title__icontains=cont)).all().order_by('-id')
+	new_articles = ArticleInfo.objects.all()[:8]
 	# new_articles = new_articles.order_by('-add_time')[:8]
 	all_tags = TagInfo.objects.all()
 	if not all_articles:
