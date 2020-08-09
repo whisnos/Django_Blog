@@ -143,7 +143,7 @@ def search(request):
 		})
 
 	page_params = {
-		'total': all_articles.count(),
+		'total': ArticleInfo.objects.filter(title__icontains=cont).order_by('-id').count(),
 		'page_size': PAGE_SIZE,
 		'page': page,
 		'display': DISPLAY,
