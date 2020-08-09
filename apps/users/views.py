@@ -131,7 +131,9 @@ def search(request):
 		return render(request, 'none.html', {
 			'all_category': all_category
 		})
-	all_articles = ArticleInfo.objects.filter(title__icontains=cont).order_by('-id')
+	page = int((request.GET.get('p', 1)))
+	offset = (page - 1) * PAGE_SIZE
+	all_articles = ArticleInfo.objects.filter(title__icontains=cont).order_by('-id')[offset:offset + PAGE_SIZE:]
 	new_articles = ArticleInfo.objects.all().order_by('-id')[:8]
 	# new_articles = new_articles.order_by('-add_time')[:8]
 	all_tags = TagInfo.objects.all().order_by('-id')
@@ -139,7 +141,7 @@ def search(request):
 		return render(request, 'none.html', {
 			'all_category': all_category
 		})
-	page = int((request.GET.get('p', 1)))
+
 	page_params = {
 		'total': all_articles.count(),
 		'page_size': PAGE_SIZE,
@@ -148,8 +150,8 @@ def search(request):
 		'url': request.path.replace('&p={}'.format(page), '?')
 	}
 	pages = iPagination(page_params)
-	offset = (page - 1) * PAGE_SIZE
-	all_articles = all_articles[offset:offset + PAGE_SIZE:]
+
+	# all_articles = all_articles[offset:offset + PAGE_SIZE:]
 
 	return render(request, 'search_list.html', {
 		'all_category': all_category,
