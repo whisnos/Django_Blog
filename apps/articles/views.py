@@ -13,7 +13,7 @@ def list_detail(request, cate):
 	all_category = Category.objects.filter(is_tab=True).order_by('add_time')
 	cate_queryset = Category.objects.filter(path_name=cate)
 	new_articles = ArticleInfo.objects.all()
-	new_articles = new_articles.order_by('-add_time')[:8]
+	new_articles = new_articles.order_by('-id')[:8]
 	if cate_queryset:
 		page = int((request.GET.get('p', 1)))
 		cate_obj = cate_queryset[0]
@@ -82,14 +82,14 @@ def article_detail(request, artid):
 	if artid:
 		all_category = Category.objects.filter(is_tab=True).order_by('add_time')
 		art_queryset = ArticleInfo.objects.filter(id=int(artid))
-		new_articles = ArticleInfo.objects.all().order_by('-add_time')[:8]
+		new_articles = ArticleInfo.objects.all().order_by('-id')[:8]
 
 		if art_queryset:
 			username = random.choice(the_list)
 			art_obj = art_queryset[0]
 			art_obj.click_num += 1
 			art_obj.save()
-			all_tags = TagInfo.objects.all()
+			all_tags = TagInfo.objects.all().order_by('id')
 			user_comment_list = UserComment.objects.filter(comment_article_id=int(artid))
 			# cate_name = Category.objects.all()
 			return render(request, 'detail.html', {
