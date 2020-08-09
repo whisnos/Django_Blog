@@ -17,7 +17,7 @@ from users.models import VerifyCodeEmail, UserProfile
 from MyBlog.settings import PAGE_SIZE,DISPLAY
 
 def index(request):
-	cate_name = Category.objects.all().order_by('add_time')
+	cate_name = Category.objects.all().order_by('id')
 	all_category = cate_name.filter(is_tab=True).order_by('add_time')
 	print('all_category',all_category)
 	new_articles = ArticleInfo.objects.all().order_by('-usercomment__add_time')
@@ -28,7 +28,7 @@ def index(request):
 	all_articles = ArticleInfo.objects.all().order_by('-id')
 	article_total=all_articles.count()
 	page = int((request.GET.get('p',1)))
-	all_tags = TagInfo.objects.all()
+	all_tags = TagInfo.objects.all().order_by('id')
 	today_time=datetime.datetime.now().strftime("%Y-%m-%d")
 	all_day=Caltime('2017-12-12',today_time)
 	page_params = {
